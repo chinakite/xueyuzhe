@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd                           http://www.springframework.org/schema/context                            http://www.springframework.org/schema/context/spring-context-3.0.xsd                           http://www.springframework.org/schema/mvc                            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd                         http://www.springframework.org/schema/aop                            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd                         http://www.springframework.org/schema/util                          http://www.springframework.org/schema/util/spring-util.xsd                            http://www.springframework.org/schema/tx                            http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+        
+ 	<!-- 开启注解处理器 -->
+    <context:annotation-config></context:annotation-config>
+    
+    <context:component-scan base-package="com.ideamoment.*"/> 
+    <context:component-scan base-package="com.xueyuzhe.*"/> 
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/> 
+ 
+    <bean class="com.ideamoment.ideadp.restful.IdeaAnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <array>
+                <ref bean="fastJsonHttpMessageConverter"/>
+            </array>
+        </property>
+    </bean>
+    
+    <bean class="com.ideamoment.ideadp.exception.IdeaExceptionHandler" id="exceptionResolver"/>
+    
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
+
+    <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" id="fastJsonHttpMessageConverter">
+
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+                <value>text/html;charset=UTF-8</value><!-- 避免IE出现下载JSON文件的情况 -->
+            </list>
+        </property>
+        <property name="features">
+            <list>
+                <value>QuoteFieldNames</value>
+                <value>WriteDateUseDateFormat</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 注册一个JDBC数据源事务管理器 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+    <bean id="ideaJdbcTxAspect" class="com.ideamoment.ideajdbc.spring.IdeaJdbcTransactionAspect" />
+    <bean id="ideajdbcInitBean" class="com.ideamoment.ideajdbc.spring.IdeaJdbcInitializingBean"/>
+</beans>

@@ -1,0 +1,38 @@
+.bar .icon.f14{font-size: 16px;}
+
+.book-logo {
+    width: 20%;
+}
+
+.table-view-cell.table-cell-view-book {
+    padding: 18px 15px;   
+}
+
+.table-view-cell > .item:not(.btn) {
+    margin: -15px;
+}
+
+.table-view .media-object.pull-left.book-logo {
+    margin-right: 15px;
+}
+
+.toolbar {
+    height: 44px;
+    background: #fff4e3;
+    padding: 15px;
+}
+
+.btn-black-text {
+    color: #222;
+}
+
+.table-cell-view-section {
+    padding: 10px 15px;   
+}
+
+#aplayer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+}

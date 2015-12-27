@@ -1,0 +1,30 @@
+.header-border {
+    border-top: 3px solid #247d3a;
+}
+
+.logo {
+    display: inline-block;
+    height: 31px;
+    width: 100px;
+    margin-top: 5px;
+    background: url('../img/logo.jpg') no-repeat;
+    background-size: cover;
+}
+
+.banner{
+}
+.banner img {
+    width: 100%;
+}
+
+.category-logo {
+    width: 35%;
+}
+
+.table-cell-view-category {
+    padding: 15px;
+}
+
+.table-view-cell > .item:not(.btn) {
+    margin: -15px;
+}
